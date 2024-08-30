@@ -1,6 +1,7 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class SettingProductPage(Base):
@@ -117,6 +118,7 @@ class SettingProductPage(Base):
     # Methods
 
     def set_product_settings(self):
+        Logger.add_start_step(method='set_product_settings')
         self.get_current_url()
         self.click_brand_checkbox()
         self.move_left_slider()
@@ -132,3 +134,4 @@ class SettingProductPage(Base):
         self.click_screen_technology_checkbox()
         self.driver.execute_script("window.scrollTo(0, 0)")
         self.click_product_link()
+        Logger.add_end_step(self.driver.current_url, method='set_product_settings')

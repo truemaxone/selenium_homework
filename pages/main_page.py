@@ -1,5 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class MainPage(Base):
@@ -66,6 +67,7 @@ class MainPage(Base):
     # Methods
 
     def find_product(self):
+        Logger.add_start_step(method='find_product')
         self.driver.get(self.url)
         self.get_current_url()
         self.click_city_button()
@@ -75,3 +77,4 @@ class MainPage(Base):
         self.check_title(self.get_product_type_title(), 'Телевизоры и цифровое ТВ')
         self.click_tv_type_button()
         self.check_title(self.get_tv_type_title(), 'Смарт телевизоры')
+        Logger.add_end_step(self.driver.current_url, method='find_product')

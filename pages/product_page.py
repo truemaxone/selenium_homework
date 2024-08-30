@@ -1,5 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class ProductPage(Base):
@@ -44,6 +45,8 @@ class ProductPage(Base):
     # Methods
 
     def add_product_to_cart(self):
+        Logger.add_start_step(method='add_product_to_cart')
         self.get_current_url()
         self.click_add_to_cart_button()
         self.click_cart_button()
+        Logger.add_end_step(self.driver.current_url, method='add_product_to_cart')
