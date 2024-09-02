@@ -3,8 +3,11 @@ import os
 
 
 class Logger:
-    file_name = f"C:\\Users\\Zatsepin.MR\\PycharmProjects\\PythonLearning\\selenium_fw\\logs\\log_" + \
+    cur_path = os.getcwd()
+    parent = os.path.join(cur_path, os.pardir)
+    file_name = f"{os.path.abspath(parent)}\logs\\log_" + \
                 str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
+    print(file_name)
 
     @classmethod
     def write_log_to_file(cls, data: str):

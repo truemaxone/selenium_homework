@@ -8,7 +8,6 @@ class SettingProductPage(Base):
 
     def __init__(self, driver, wait):
         super().__init__(driver)
-        self.driver = driver
         self.wait = wait
         self.move = ActionChains(self.driver)
 
