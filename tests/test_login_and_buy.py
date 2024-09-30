@@ -1,3 +1,4 @@
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
@@ -9,6 +10,7 @@ from pages.product_page import ProductPage
 from pages.cart_page import CartPage
 
 
+@allure.feature('Test login and buy product')
 def test_buy_product(set_module):
     options = webdriver.ChromeOptions()
     options.page_load_strategy = 'eager'
@@ -35,17 +37,21 @@ def test_buy_product(set_module):
     check_product_price = pp.get_product_price()
     pp.add_product_to_cart()
 
-    assert product_name == check_product_name
-    print("Product name check successful")
-    assert product_price == check_product_price
-    print("Product price check successful")
+    with allure.step('Check product name matches page product name'):
+        assert product_name == check_product_name
+        print("Product name check successful")
+    with allure.step('Check product price matches page product price'):
+        assert product_price == check_product_price
+        print("Product price check successful")
 
     cp = CartPage(driver, wait)
     cart_product_name = cp.get_cart_product_name()
     cart_product_price = cp.get_cart_product_price()
     cp.finish_purchase()
 
-    assert product_name == cart_product_name
-    print("Product name in cart check successful")
-    assert product_price == cart_product_price
-    print("Product price in cart check successful")
+    with allure.step('Check product name matches cart product name'):
+        assert product_name == cart_product_name
+        print("Product name in cart check successful")
+    with allure.step('Check product price matches cart product price'):
+        assert product_price == cart_product_price
+        print("Product price in cart check successful")

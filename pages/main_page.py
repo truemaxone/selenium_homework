@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
 from utilities.logger import Logger
@@ -44,27 +45,33 @@ class MainPage(Base):
 
     # Actions
     def click_city_button(self):
-        self.get_city_button().click()
-        print("Clicked city button")
+        with allure.step("Clicked city button"):
+            self.get_city_button().click()
+            print("Clicked city button")
 
     def click_main_button(self):
-        self.get_main_button().click()
-        print("Clicked main button")
+        with allure.step("Clicked main button"):
+            self.get_main_button().click()
+            print("Clicked main button")
 
     def click_menu_section(self):
-        self.get_menu_section().click()
-        print("Clicked menu section")
+        with allure.step("Clicked menu section"):
+            self.get_menu_section().click()
+            print("Clicked menu section")
 
     def click_product_type_button(self):
-        self.get_product_type_button().click()
-        print("Clicked product type button")
+        with allure.step("Clicked product type button"):
+            self.get_product_type_button().click()
+            print("Clicked product type button")
 
     def click_tv_type_button(self):
-        self.get_tv_type_button().click()
-        print("Clicked TV type button")
+        with allure.step("Clicked TV type button"):
+            self.get_tv_type_button().click()
+            print("Clicked TV type button")
 
     # Methods
 
+    @allure.feature("Testing Main page")
     def find_product(self):
         Logger.add_start_step(method='find_product')
         self.driver.get(self.url)

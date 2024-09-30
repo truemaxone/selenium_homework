@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
 from utilities.logger import Logger
@@ -21,7 +22,7 @@ class CartPage(Base):
         return self.wait.until(EC.element_to_be_clickable(self.cart_product_name_locator)).text
 
     def get_cart_product_price(self):
-        return self.wait.until(EC.element_to_be_clickable(self.cart_product_price_locator)).text
+        return self.wait.until(EC.element_to_be_clickable(self.cart_product_price_locator)).text.split(' ₽')[0]
 
     def get_cart_title(self):
         return self.driver.find_element(*self.cart_page_title_locator)
@@ -32,17 +33,20 @@ class CartPage(Base):
     # Actions
 
     def click_checkout_button(self):
-        self.get_checkout_button().click()
-        print("Clicked 'Checkout' button")
+        with allure.step('Clicked "Checkout" button'):
+            self.get_checkout_button().click()
+            print("Clicked 'Checkout' button")
 
     # Methods
 
     @staticmethod
     def check_title(title, check_title):
         clean_title = title.text.split()[0]
-        assert clean_title == check_title
-        print(f'Title "{check_title}" successfully verified')
+        with allure.step(f'Title "{check_title}" successfully verified'):
+            assert clean_title == check_title
+            print(f'Title "{check_title}" successfully verified')
 
+    @allure.feature("Testing Cart page")
     def finish_purchase(self):
         Logger.add_start_step(method='finish_purchase')
         self.get_current_url()

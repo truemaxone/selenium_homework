@@ -1,3 +1,5 @@
+import allure
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
@@ -17,7 +19,7 @@ class SettingProductPage(Base):
     left_slider_locator = ("xpath", "//button[@class='slider__knob ng-star-inserted']")
     right_slider_locator = ("xpath", "//button[@class='slider__knob']")
     show_more_button_locator = ("xpath", "(//p[@class='show-all ng-star-inserted'])[2]")
-    diagonal_checkbox_locator = ("xpath", "//a[text()=' 65\" - 74\" ']")
+    diagonal_checkbox_locator = ("xpath", "//a[text()=' 55\" - 64\" ']")
     resolution_checkbox_locator = ("xpath", "//a[text()=' 4K Ultra HD (3840x2160 Пикс) ']")
     frequency_button_locator = ("xpath", "//div[text()=' Частота обновления ']")
     frequency_checkbox_locator = ("xpath", "//a[text()=' 120 Гц ']")
@@ -66,56 +68,68 @@ class SettingProductPage(Base):
         return self.wait.until(EC.presence_of_element_located(self.product_link_locator)).text
 
     def get_product_price(self):
-        return self.wait.until(EC.presence_of_element_located(self.product_price_locator)).text
+        return self.wait.until(EC.presence_of_element_located(self.product_price_locator)).text.split(' ₽')[0]
 
     # Actions
 
     def click_brand_checkbox(self):
-        self.get_brand_checkbox().click()
-        print("Clicked brand checkbox")
+        with allure.step("Clicked brand checkbox"):
+            self.get_brand_checkbox().click()
+            print("Clicked brand checkbox")
 
     def move_left_slider(self):
-        self.move.click_and_hold(self.get_left_slider()).move_by_offset(20, 0).release().perform()
-        print("Left slider moved")
+        with allure.step("Left slider moved"):
+            self.move.click_and_hold(self.get_left_slider()).move_by_offset(20, 0).release().perform()
+            print("Left slider moved")
 
     def move_right_slider(self):
-        self.move.click_and_hold(self.get_right_slider()).move_by_offset(-50, 0).release().perform()
-        print("Right slider moved")
+        with allure.step("Right slider moved"):
+            self.move.click_and_hold(self.get_right_slider()).move_by_offset(-50, 0).release().perform()
+            print("Right slider moved")
 
     def click_show_more_button(self):
-        self.get_show_more_button().click()
-        print('Clicked "Show more" button')
+        with allure.step('Clicked "Show more" button'):
+            self.get_show_more_button().click()
+            print('Clicked "Show more" button')
 
     def click_diagonal_checkbox(self):
-        self.get_diagonal_checkbox().click()
-        print("Clicked screen diagonal checkbox")
+        with allure.step("Clicked screen diagonal checkbox"):
+            self.get_diagonal_checkbox().click()
+            print("Clicked screen diagonal checkbox")
 
     def click_resolution_checkbox(self):
-        self.get_resolution_checkbox().click()
-        print("Clicked screen resolution checkbox")
+        with allure.step("Clicked screen resolution checkbox"):
+            self.get_resolution_checkbox().click()
+            print("Clicked screen resolution checkbox")
 
     def click_frequency_button(self):
-        self.get_frequency_button().click()
-        print("Clicked screen frequency button")
+        with allure.step("Clicked screen frequency button"):
+            self.get_frequency_button().click()
+            print("Clicked screen frequency button")
 
     def click_frequency_checkbox(self):
-        self.get_frequency_checkbox().click()
-        print("Clicked screen frequency checkbox")
+        with allure.step("Clicked screen frequency checkbox"):
+            self.get_frequency_checkbox().click()
+            print("Clicked screen frequency checkbox")
 
     def click_screen_technology_button(self):
-        self.get_screen_technology_button().click()
-        print('Clicked "Screen technology" button')
+        with allure.step('Clicked "Screen technology" button'):
+            self.get_screen_technology_button().click()
+            print('Clicked "Screen technology" button')
 
     def click_screen_technology_checkbox(self):
-        self.get_screen_technology_checkbox().click()
-        print('Clicked "Screen technology" checkbox')
+        with allure.step('Clicked "Screen technology" checkbox'):
+            self.get_screen_technology_checkbox().click()
+            print('Clicked "Screen technology" checkbox')
 
     def click_product_link(self):
-        self.get_product_link().click()
-        print("Clicked product link")
+        with allure.step("Clicked product link"):
+            self.get_product_link().click()
+            print("Clicked product link")
 
     # Methods
 
+    @allure.feature("Testing Setting product page")
     def set_product_settings(self):
         Logger.add_start_step(method='set_product_settings')
         self.get_current_url()
@@ -128,7 +142,7 @@ class SettingProductPage(Base):
         self.click_resolution_checkbox()
         self.click_frequency_button()
         self.click_frequency_checkbox()
-        self.driver.execute_script("window.scrollTo(0, 1000)")
+        self.driver.execute_script("window.scrollTo(0, 1500)")
         self.click_screen_technology_button()
         self.click_screen_technology_checkbox()
         self.driver.execute_script("window.scrollTo(0, 0)")

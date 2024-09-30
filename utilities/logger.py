@@ -4,8 +4,7 @@ import os
 
 class Logger:
     cur_path = os.getcwd()
-    parent = os.path.join(cur_path, os.pardir)
-    file_name = f"{os.path.abspath(parent)}\logs\\log_" + \
+    file_name = f"{os.path.abspath(cur_path)}\logs\\log_" + \
                 str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
     print(file_name)
 
