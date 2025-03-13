@@ -3,9 +3,10 @@ import allure
 from base.base_test import BaseTest
 
 
+@allure.feature("Mvideo shot testing")
 class TestMvideo(BaseTest):
 
-    @allure.feature('Test search, setup and buy product')
+    @allure.title('Test search, setup and buy product')
     def test_buy_product(self, set_module):
 
         self.main_page.find_product()
