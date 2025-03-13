@@ -1,3 +1,3 @@
 .pytest_cache
 logs
-results
+allure-report
