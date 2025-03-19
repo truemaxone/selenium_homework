@@ -26,11 +26,11 @@ def driver(request):
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, "
                          "like Gecko) Chrome/128.0.0.0 Safari/537.3")
-    options.binary_location = "/usr/bin/chromium"
+    # options.binary_location = "/usr/bin/chromium"  # for docker
     prefs = {"profile.default_content_setting_values.notifications": 2}  # Off popups
     options.add_experimental_option("prefs", prefs)
-    # service = Service(executable_path=ChromeDriverManager().install())
-    service = Service(executable_path="/usr/bin/chromedriver")  # for docker
+    service = Service(executable_path=ChromeDriverManager().install())
+    # service = Service(executable_path="/usr/bin/chromedriver")  # for docker
     driver = webdriver.Chrome(service=service, options=options)
     request.cls.driver = driver
     yield driver
