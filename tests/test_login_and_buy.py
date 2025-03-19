@@ -1,9 +1,8 @@
 import allure
-
 from base.base_test import BaseTest
 
 
-@allure.feature("Mvideo shot testing")
+@allure.feature("Mvideo shop testing")
 class TestMvideo(BaseTest):
 
     @allure.title('Test search, setup and buy product')

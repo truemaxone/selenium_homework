@@ -20,15 +20,15 @@ class SettingProductPage(Base):
     SHOW_MORE_BUTTON = ("xpath", "(//p[@class='show-all ng-star-inserted'])[2]")
     DIAGONAL_CHECKBOX = ("xpath", "//a[text()=' 55\" - 64\" ']")
 
-    RESOLUTION_DIV = ("xpath", "//div[@class='accordion__option ng-tns-c3416668012-11']/div")
-    SHOW_MORE_RESOLUTION = ("xpath", "//label[@class='accordion__title ng-tns-c3416668012-11']")
+    RESOLUTION_DIV = ("xpath", "//div[@class='accordion__option ng-tns-c1459091177-11']/div")
+    SHOW_MORE_RESOLUTION = ("xpath", "//div[text()='Разрешение экрана']")
     RESOLUTION_CHECKBOX = ("xpath", "//a[text()=' 4K Ultra HD (3840x2160 Пикс) ']")
 
-    FREQUENCY_DIV = ("xpath", "//div[@class='accordion__option ng-tns-c3416668012-12']/div[@class]")
-    SHOW_MORE_FREQUENCY = ("xpath", "//label[@class='accordion__title ng-tns-c3416668012-12']")
+    FREQUENCY_DIV = ("xpath", "//div[@class='accordion__option ng-tns-c1459091177-12']/div[@class]")
+    SHOW_MORE_FREQUENCY = ("xpath", "//div[text()='Частота обновления']")
     FREQUENCY_CHECKBOX = ("xpath", "//a[text()=' 120 Гц ']")
 
-    PRODUCT_LINK = ("xpath", "//a[@class='product-title__text']")
+    PRODUCT_LINK = ("xpath", "(//a[@class='product-title__text product-title--clamp'])[1]")
 
     # Sliders
 
